@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Tarefa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec; 
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f4a300; 
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #f4a300; 
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f4a300; 
+        }
+
+        label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #f4a300; 
+        }
+
+        input[type="text"], input[type="email"], input[type="number"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #f4a300;
+            border-radius: 5px;
+            font-size: 1em;
+            background-color: #fce4ec;
+        }
+
+        input[type="submit"] {
+            background-color: #f4a300; 
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #e68a00; 
+        }
+
+        hr {
+            border: 1px solid #f4a300; 
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .success-message {
+            text-align: center;
+            font-size: 1.5em;
+            color: green;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<h2>Cadastro de Tarefa</h2>
+<form id="formTarefa" action="cadastrar_tarefa.php" method="POST">
+    <label for="tar_setor">Setor:</label>
+    <input type="text" id="tar_setor" name="tar_setor" required>
+
+    <label for="tar_prioridade">Prioridade:</label>
+    <input type="text" id="tar_prioridade" name="tar_prioridade" required>
+
+    <label for="tar_descricao">Descrição:</label>
+    <textarea id="tar_descricao" name="tar_descricao" required></textarea>
+
+    <label for="tar_status">Status:</label>
+    <input type="text" id="tar_status" name="tar_status" required>
+
+    <label for="usu_codigo">Nome do Usuário (Código):</label>
+    <input type="number" id="usu_codigo" name="usu_codigo" required>
+
+    <input type="submit" value="Cadastrar">
+</form>
+
+<div id="successMessage" class="success-message" style="display: none;">
+    Redirecionando para o gerenciamento...
+</div>
+
+<script>
+    function showSuccessMessage(event) {
+        event.preventDefault(); 
+        document.getElementById('successMessage').style.display = 'block';
+        
+        setTimeout(function() {
+            window.location.href = 'gerenciamento de tarefas.html'; 
+        }, 3000);
+    }
+
+    document.getElementById('formTarefa').addEventListener('submit', showSuccessMessage);
+</script>
+
+</body>
+</html>

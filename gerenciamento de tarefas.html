@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela com Tabelas de gerenciamento</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec; 
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #131409; 
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #080806; 
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f4f75b; 
+        }
+
+        label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #13120f; 
+        }
+
+        input[type="text"], input[type="email"], input[type="number"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #f4f767;
+            border-radius: 5px;
+            font-size: 1em;
+            background-color: #fce4ec;
+        }
+
+        input[type="submit"] {
+            background-color: #ebe379; 
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #f7e96f; 
+        }
+
+        hr {
+            border: 1px solid #edf05e; 
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .success-message {
+            text-align: center;
+            font-size: 1.5em;
+            color: rgb(247, 147, 189);
+            margin-top: 20px;
+        }
+
+        .actions button {
+            margin: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+            border-radius: 5px;
+        }
+
+        .delete-btn {
+            background-color: #ff4c4c;
+            color: white;
+        }
+
+        .edit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .status-btn {
+            background-color: #ffd700;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background-color: #d43f3f;
+        }
+
+        .edit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .status-btn:hover {
+            background-color: #e1c500;
+        }
+    </style>
+
+    <script>
+        function excluirLinha(event) {
+            const linha = event.target.closest('tr');
+            if (confirm("Tem certeza que deseja excluir esta tarefa?")) {
+                linha.remove();
+            }
+        }
+
+        function alterarLinha(event) {
+            const linha = event.target.closest('tr');
+            const nome = linha.cells[1].textContent; 
+            const descricao = linha.cells[3].textContent;  
+
+          
+        }
+
+        function alterarStatus(event) {
+            const linha = event.target.closest('tr');
+            const status = linha.cells[4].textContent;  
+            
+        
+            const novoStatus = prompt("Alterar status", status);
+
+            if (novoStatus) {
+                linha.cells[4].textContent = novoStatus;  
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Gerenciamento de Tarefas</h1>
+
+    <label for="opcao">Escolha uma opção:</label>
+    <select id="opcao" name="opcao" onchange="atualizarTabela()">
+        <option value="opcao1">Opção 1</option>
+        <option value="opcao2">Opção 2</option>
+        <option value="opcao3">Opção 3</option>
+    </select>
+
+    <hr>
+
+    <table boder="1">
+        <thead>
+            <tr>
+                <th>Setor</th>
+                <th>Nome</th>
+                <th>Prioridade</th>
+                <th>Descrição</th>
+                <th>Status</th>
+                <th>Usuário Código</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>META AI</td>
+                <td>Geovanna</td>
+                <td>Alta</td>
+                <td>Concluir a implementação do sistema de login</td>
+                <td>Em andamento</td>
+                <td>1</td>
+                <td class="actions">
+                   
+                    <button class="delete-btn" onclick="excluirLinha(event)">Excluir</button>
+                    <button class="status-btn" onclick="alterarStatus(event)">Alterar Status</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Financeiro</td>
+                <td>Ana Laura</td>
+                <td>Média</td>
+                <td>Verificar relatórios financeiros do mês</td>
+                <td>Pendente</td>
+                <td>2</td>
+                <td class="actions">
+                    <button class="delete-btn" onclick="excluirLinha(event)">Excluir</button>
+                    <button class="status-btn" onclick="alterarStatus(event)">Alterar Status</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Programação</td>
+                <td>Bruna</td>
+                <td>Mínima</td>
+                <td>Analisar erros de programação</td>
+                <td>Ativo</td>
+                <td>3</td>
+                <td class="actions">
+                  
+                    <button class="delete-btn" onclick="excluirLinha(event)">Excluir</button>
+                    <button class="status-btn" onclick="alterarStatus(event)">Alterar Status</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
+
